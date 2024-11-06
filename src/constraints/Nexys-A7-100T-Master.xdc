@@ -17,6 +17,12 @@ set_property -dict { PACKAGE_PIN H17   IOSTANDARD LVCMOS33 } [get_ports { LED[0]
 set_property -dict { PACKAGE_PIN N17   IOSTANDARD LVCMOS33 } [get_ports { BTN }]; #IO_L9P_T1_DQS_14 Sch=btnc
 
 
+## Question 2 Part B Implementation, both parts
+
+set_property ALLOW_COMBINATORIAL_LOOPS TRUE [get_nets { LED_OBUF[0] } ];
+
+set_property ALLOW_COMBINATORIAL_LOOPS TRUE [get_nets { LED_OBUF[1] } ];
+
 
 #constraint used to replace a ddr.xdc constrant which is not working for some unknown reason
 #"set_false_path -through [get_nets -hier -filter {NAME =~ */u_iodelay_ctrl/sys_rst_i}]"
