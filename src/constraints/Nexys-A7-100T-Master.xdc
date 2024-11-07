@@ -34,6 +34,8 @@ set_property ALLOW_COMBINATORIAL_LOOPS TRUE [get_nets {LED_OBUF[2] } ];
 
 set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets {SW_IBUF[2] } ];
 
+set_property -dict { PACKAGE_PIN J13   IOSTANDARD LVCMOS33 } [get_ports { LED[2] }]; #IO_L17N_T2_A25_15 Sch=led[2]
+
 ##create_clock sysclkpin -period 1000.00 -waveform {0 5} [getports{SW[2]}];
 
 #constraint used to replace a ddr.xdc constrant which is not working for some unknown reason
