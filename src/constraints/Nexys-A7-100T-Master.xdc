@@ -34,6 +34,7 @@ set_property ALLOW_COMBINATORIAL_LOOPS TRUE [get_nets {LED_OBUF[2] } ];
 
 set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets {SW_IBUF[2] } ];
 
+##create_clock sysclkpin -period 1000.00 -waveform {0 5} [getports{SW[2]}];
 
 #constraint used to replace a ddr.xdc constrant which is not working for some unknown reason
 #"set_false_path -through [get_nets -hier -filter {NAME =~ */u_iodelay_ctrl/sys_rst_i}]"
