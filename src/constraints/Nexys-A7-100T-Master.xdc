@@ -6,8 +6,6 @@
 set_property BITSTREAM.GENERAL.COMPRESS TRUE [current_design]
 set_property BITSTREAM.CONFIG.SPI_BUSWIDTH 4 [current_design]
 
-set_property ALLOW_COMBINATORIAL_LOOPS TRUE [get_nets { LED_OBUF[0] } ];
-
 set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets { SW_IBUF[0] } ];
 
 set_property -dict { PACKAGE_PIN J15   IOSTANDARD LVCMOS33 } [get_ports { SW[0] }]; #IO_L24N_T3_RS0_15 Sch=sw[0] SMOKE DETECTED
@@ -20,11 +18,21 @@ set_property -dict { PACKAGE_PIN L16   IOSTANDARD LVCMOS33 } [get_ports { SW[1] 
 
 set_property -dict { PACKAGE_PIN K15   IOSTANDARD LVCMOS33 } [get_ports { LED[1] }]; #IO_L24P_T3_RS1_15 Sch=led[1] ALARM
 
+
 ## Question 2 Part B Implementation, both parts
 
 set_property ALLOW_COMBINATORIAL_LOOPS TRUE [get_nets { LED_OBUF[0] } ];
 
-set_property ALLOW_COMBINATORIAL_LOOPS TRUE [get_nets { LED_OBUF[1] } ];
+set_property ALLOW_COMBINATORIAL_LOOPS TRUE [get_nets { sa_level_dut/LED_OBUF[1]_inst_i_2_n_0} ];
+
+
+# Question 3 Part B Implementaiton, four parts
+
+set_property ALLOW_COMBINATORIAL_LOOPS TRUE [get_nets {LED_OBUF[1] } ];
+
+set_property ALLOW_COMBINATORIAL_LOOPS TRUE [get_nets {LED_OBUF[2] } ];
+
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets {SW_IBUF[2] } ];
 
 
 #constraint used to replace a ddr.xdc constrant which is not working for some unknown reason
