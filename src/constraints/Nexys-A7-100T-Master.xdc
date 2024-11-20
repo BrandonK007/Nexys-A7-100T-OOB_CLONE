@@ -42,17 +42,16 @@ create_clock sys_clk_pin -period 1000.00 -waveform {0 5}[get_ports{SW[2]}];
 
 #Laboratory 6 Question 1, Two Parts
 
-create clock sys clk pin -period 1000.00 -waveform {0 5} [get ports { SW[1] } ];
+create_clock sys_clk_pin -period 1000.00 -waveform {0 5} [get_ports { SW[1] } ];
 
-set property CLOCK DEDICATED ROUTE FALSE [get nets { SW IBUF[1] } ];
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets { SW_IBUF[1] } ];
 
 
 #Laboratory 6 Question 2, Both Parts
 
-#create clock sys clk pin -period 1000.00 -waveform {0 5} [get ports { SW[1] } ];
+#create_clock sys_clk_pin -period 1000.00 -waveform {0 5} [get_ports { SW[1] } ];
 
-#set property CLOCK DEDICATED ROUTE FALSE [get nets { SW IBUF[1] } ];
-
+#set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets { SW_IBUF[1] } ];
 
 #constraint used to replace a ddr.xdc constrant which is not working for some unknown reason
 #"set_false_path -through [get_nets -hier -filter {NAME =~ */u_iodelay_ctrl/sys_rst_i}]"
