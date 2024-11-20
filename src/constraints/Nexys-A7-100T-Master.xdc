@@ -18,25 +18,41 @@ set_property -dict { PACKAGE_PIN L16   IOSTANDARD LVCMOS33 } [get_ports { SW[1] 
 
 set_property -dict { PACKAGE_PIN K15   IOSTANDARD LVCMOS33 } [get_ports { LED[1] }]; #IO_L24P_T3_RS1_15 Sch=led[1] ALARM
 
+set_property -dict { PACKAGE_PIN J13   IOSTANDARD LVCMOS33 } [get_ports { LED[2] }];
+
+set_property -dict { PACKAGE_PIN M13   IOSTANDARD LVCMOS33 } [get_ports { SW[2] }]; 
 
 ## Question 2 Part B Implementation, both parts
 
 set_property ALLOW_COMBINATORIAL_LOOPS TRUE [get_nets { LED_OBUF[0] } ];
 
 set_property ALLOW_COMBINATORIAL_LOOPS TRUE [get_nets { sa_level_dut/LED_OBUF[1]_inst_i_2_n_0} ];
-
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets {SW_IBUF[1] } ];
 
 # Question 3 Part B Implementaiton, four parts
 
-set_property ALLOW_COMBINATORIAL_LOOPS TRUE [get_nets {LED_OBUF[1] } ];
+set_property ALLOW_COMBINATORIAL_LOOPS TRUE [get_nets {LED_OBUF[1]_inst_i_2_n_0 } ];
 
 set_property ALLOW_COMBINATORIAL_LOOPS TRUE [get_nets {LED_OBUF[2] } ];
 
 set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets {SW_IBUF[2] } ];
 
-set_property -dict { PACKAGE_PIN J13   IOSTANDARD LVCMOS33 } [get_ports { LED[2] }]; #IO_L17N_T2_A25_15 Sch=led[2]
+create_clock sys_clk_pin -period 1000.00 -waveform {0 5}[get_ports{SW[2]}];                     
 
-##create_clock sysclkpin -period 1000.00 -waveform {0 5} [getports{SW[2]}];
+
+#Laboratory 6 Question 1, Two Parts
+
+create clock sys clk pin -period 1000.00 -waveform {0 5} [get ports { SW[1] } ];
+
+set property CLOCK DEDICATED ROUTE FALSE [get nets { SW IBUF[1] } ];
+
+
+#Laboratory 6 Question 2, Both Parts
+
+#create clock sys clk pin -period 1000.00 -waveform {0 5} [get ports { SW[1] } ];
+
+#set property CLOCK DEDICATED ROUTE FALSE [get nets { SW IBUF[1] } ];
+
 
 #constraint used to replace a ddr.xdc constrant which is not working for some unknown reason
 #"set_false_path -through [get_nets -hier -filter {NAME =~ */u_iodelay_ctrl/sys_rst_i}]"
@@ -45,3 +61,4 @@ set_false_path -from [get_pins Inst_Audio/DDR/rstn_reg/C] -to [get_pins Inst_Aud
 #needed for sync-async modules
 set_false_path -through [get_pins -filter {NAME =~ *SyncAsync*/oSyncStages_reg[*]/D} -hier]
  
+
